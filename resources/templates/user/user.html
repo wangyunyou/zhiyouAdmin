@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/table.css">
+    <title>物品管理</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div style="padding: 20px; background-color: #fff;height: 100%">
+        <div class="title">
+            <button class="layui-btn layui-btn-sm" style="padding:0 15px" id="add">
+                添加
+            </button>
+            <div style="float: right;display: flex">
+                <input type="text" placeholder="请输入..." style="width: 200px;margin-right: 5px;text-indent: 3px">
+                <button class="layui-btn layui-btn-sm" style="padding:0 15px" id="">查询</button>
+            </div>
+        </div>
+
+        <table id="demo" lay-filter="test"></table>
+
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+        </script>
+
+        <form class="layui-form" action="" id="layer" style="display: none;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入姓名"
+                        class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话号码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入电话号码"
+                        class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" pane="">
+                <label class="layui-form-label">角色</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="like1[write]" lay-skin="primary" title="理货员" checked="">
+                    <input type="checkbox" name="like1[read]" lay-skin="primary" title="配送员">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">工作场所</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="center">
+                        <option value=""></option>
+                        <option value="0">理货中心A</option>
+                        <option value="1">理货中心B</option>
+                        <option value="2">理货中心C</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">登录密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="title" lay-verify="title" autocomplete="off" placeholder="请输入密码"
+                        class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">确认密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="title" lay-verify="title" autocomplete="off" placeholder="请确认密码"
+                        class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-top: 30px;">
+                <p style="color:red">两次密码输入不一致</p>
+            </div>
+        </form>
+    </div>
+    <script src="../../static/jquery-3.3.1.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <script>
+        $(function () {
+            layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'],
+                function () {
+                    var laypage = layui.laypage //分页
+                        ,
+                        layer = layui.layer //弹层
+                        ,
+                        table = layui.table //表格
+
+                    $('#add').click(function () {
+                        layer.open({
+                            type: 1,
+                            content: $('#layer'),
+                            btn: ['保存', '取消'],
+                            area: ['900px', '700px'],
+                            title: '添加信息',
+                            yes: function (index, layero) {
+
+                            },
+                            btn2: function (index, layero) {
+                                //按钮【按钮二】的回调
+
+                                //return false 开启该代码可禁止点击该按钮关闭
+                            },
+                            cancel: function () {
+                                //右上角关闭回调
+
+                                //return false 开启该代码可禁止点击该按钮关闭
+                            },
+                            end: function () {
+                                //                            location.reload();
+                            }
+                        });
+                    })
+                    //执行一个 table 实例
+                    layui.use('table', function () {
+                        var table = layui.table;
+                        //第一个实例
+                        table.render({
+                            elem: '#demo'
+                                //, toolbar: 'default' //工具条
+                                ,
+                            url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json' //数据接口
+                                ,
+                            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                                layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                                    ,
+                                groups: 5 //只显示 5 个连续页码
+                                    ,
+                                first: '首页' //显示首页
+                                    ,
+                                last: '尾页' //显示尾页，
+                                    ,
+                                limit: 10,
+                                theme: '#1E9FFF'
+                            },
+                            cols: [
+                                [ //表头
+                                    {
+                                        field: 'id',
+                                        title: '物品编号',
+                                        width: '0'
+                                    }, {
+                                        field: 'num',
+                                        title: '序号'
+                                    }, {
+                                        field: 'name',
+                                        title: '姓名'
+                                    }, {
+                                        field: 'tel',
+                                        title: '电话'
+                                    }, {
+                                        field: 'role',
+                                        title: '角色'
+                                    }, {
+                                        field: 'workPlace',
+                                        title: '工作场所'
+                                    }, {
+                                        field: 'state',
+                                        title: '状态'
+                                    }, {
+                                        field: 'right',
+                                        title: '操作',
+                                        toolbar: "#barDemo"
+                                    }
+                                ]
+                            ],
+                            done: function () {
+                                $("[data-field='id']").css('display', 'none');
+                            }
+                        });
+
+
+                    });
+                    //监听行工具事件
+                    table.on('tool(test)', function (
+                        obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+                        var data = obj.data //获得当前行数据
+                            ,
+                            layEvent = obj.event; //获得 lay-event 对应的值
+                        if (layEvent === 'del') {
+                            layer.confirm('确定要删除吗？', function (index) {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json',
+                                    success: function (result) {
+                                        if (result.success) {
+                                            layer.msg(result.msg, {
+                                                icon: 1
+                                            });
+                                            location.reload();
+                                        } else {
+                                            layer.msg(result.msg, {
+                                                icon: 2
+                                            });
+                                        }
+                                    }
+                                });
+                            });
+                        } else if (layEvent === 'edit') {
+                            layer.open({
+                                type: 1,
+                                content: $('#layer'),
+                                btn: ['保存', '取消'],
+                                area: ['900px', '700px'],
+                                title: '编辑信息',
+                                yes: function (index, layero) {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json',
+                                        data: jsonData,
+                                        dataType: 'json',
+                                        success: function (result) {
+                                            if (result.success) {
+                                                layer.msg(result.msg, {
+                                                    icon: 1
+                                                });
+                                                setTimeout(function () {
+                                                    layer
+                                                        .closeAll();
+                                                }, 1000);
+                                                location.reload();
+                                            } else {
+                                                layer.msg(result.msg, {
+                                                    icon: 2
+                                                });
+                                            }
+                                        }
+                                    });
+                                },
+                                btn2: function (index, layero) {
+                                    //按钮【按钮二】的回调
+
+                                    //return false 开启该代码可禁止点击该按钮关闭
+                                },
+                                cancel: function () {
+                                    //右上角关闭回调
+
+                                    //return false 开启该代码可禁止点击该按钮关闭
+                                },
+                                end: function () {
+                                    //                        location.reload();
+                                }
+                            });
+                        }
+                    });
+                });
+        })
+    </script>
+</body>
+
+</html>
