@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/table.css">
+    <title>商品类型</title>
+    <style>
+        .tableTitle {
+            margin: 0 20px;
+            margin-top: 20px;
+        }
+
+        .sTitle {
+            height: 40px;
+            line-height: 40px;
+            background: #1E9FFF;
+            color: #fff;
+            border-radius: 3px;
+            text-indent: 10px;
+        }
+
+        .state {
+            height: 40px;
+            line-height: 40px;
+            background: #eee;
+            margin: 0 20px;
+            padding: 0 10px;
+            color: #333;
+            border-radius: 3px;
+        }
+
+        #steps {
+            width: 1200px;
+            margin: 30px auto;
+            padding-left: 200px;
+            box-sizing: border-box;
+        }
+
+        .step-item {
+            display: inline-block;
+            line-height: 26px;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .step-item-tail {
+            width: 100%;
+            padding: 0 10px;
+            position: absolute;
+            left: 0;
+            top: 13px;
+        }
+
+        .step-item-tail i {
+            display: inline-block;
+            width: 100%;
+            height: 1px;
+            vertical-align: top;
+            background: #c2c2c2;
+            position: relative;
+        }
+
+        .step-item-tail-done {
+            background: #009688 !important;
+        }
+
+        .step-item-head {
+            position: relative;
+            display: inline-block;
+            height: 26px;
+            width: 26px;
+            text-align: center;
+            vertical-align: top;
+            color: #fff;
+            border: 1px solid #009688;
+            border-radius: 50%;
+            background: #009688;
+        }
+
+        .step-item-head.step-item-head-active {
+            background: #fff;
+            color: #009688;
+        }
+
+        .step-item-main {
+            background: #ffffff;
+            display: block;
+            position: relative;
+        }
+
+        .step-item-main-title {
+            font-weight: bolder;
+            color: #555555;
+            margin-left: -15px;
+        }
+
+        .step-item-main-desc {
+            color: #aaaaaa;
+            margin-left: -45px;
+        }
+
+        .step-item-head.step-item-head-current {
+            background: #FF5722;
+            color: #ffffff;
+        }
+
+
+        .layui-table {
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .layui-table tr td img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .total {
+            text-align: right !important;
+            padding-right: 50px !important;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 20px; background-color: #fff;height: 100%">
+        <div class="title">
+            <button class="layui-btn layui-btn-danger layui-btn-sm" style="padding:0 15px" id="close">
+                关闭
+            </button>
+        </div>
+    </div>
+
+    <div class="tableTitle" style="margin-top: 0;">
+        <p class="sTitle">
+            订单状态
+        </p>
+    </div>
+
+    <div id="steps"></div>
+
+    <div class="state">
+        当前订单状态：<span style="color: #f00;">买家付款</span>
+    </div>
+
+    <div class="tableTitle">
+        <p class="sTitle">
+            基本信息
+        </p>
+        <table class="layui-table" lay-skin="line">
+            <colgroup>
+                <col width="500">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>订单编号</th>
+                    <th>订单来源</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xxxxxxx</td>
+                    <td>手机商城</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tableTitle">
+        <p class="sTitle">
+            买家信息
+        </p>
+        <table class="layui-table" lay-skin="line">
+            <colgroup>
+                <col width="250">
+                <col width="250">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>收货地址</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xxx</td>
+                    <td>18222209999</td>
+                    <td>人生就像是一场修行</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tableTitle">
+        <p class="sTitle">
+            商品信息
+        </p>
+        <table class="layui-table" lay-skin="line">
+            <colgroup>
+                <col width="250">
+                <col width="250">
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>商品图片</th>
+                    <th>商品名称</th>
+                    <th>单价</th>
+                    <th>数量（份）</th>
+                    <th>小计</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="https://g-search2.alicdn.com/img/bao/uploaded/i4/i2/2772080898/O1CN016MnFyQ1IVKEcIMiLw_!!0-item_pic.jpg_250x250.jpg"
+                            alt=""></td>
+                    <td>苹果</td>
+                    <td>20.00</td>
+                    <td>2</td>
+                    <td>40.00</td>
+                </tr>
+                <tr>
+                    <td><img src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/2204192690376/O1CN01Bp7c691EeFTvj3Phr_!!0-item_pic.jpg_250x250.jpg"
+                            alt=""></td>
+                    <td>苹果</td>
+                    <td>20.00</td>
+                    <td>2</td>
+                    <td>40.00</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="total">
+                        配送费
+                        <span>5</span>
+                        元，总价：
+                        <span style="font-size: 1.2rem;color: red;">30</span>
+                        元
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tableTitle">
+        <p class="sTitle">
+            备注信息
+        </p>
+    </div>
+
+    <div class="state">
+        暂无
+    </div>
+
+    <script src="../../static/jquery-3.3.1.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <script>
+        $(function () {
+            $('#close').click(function () {
+                history.back(-1)
+            })
+
+            layui.config({
+                base: './../../static/js/'
+            });
+
+            layui.use('steps', function () {
+
+                var steps = layui.steps;
+
+                var data = [{
+                        'title': "买家下单",
+                        "desc": "2018-07-01 10:24:42"
+                    },
+                    {
+                        'title': "买家付款",
+                        "desc": "2018-07-01 10:44:42"
+                    },
+                    {
+                        'title': "卖家发货",
+                        "desc": "2018-07-01 10:44:42"
+                    },
+                    {
+                        'title': "订单已送达",
+                        "desc": "2018-07-01 10:44:42"
+                    },
+                    // {
+                    //     'title': "买家评价",
+                    //     "desc": "2018-07-01 10:44:42"
+                    // }
+                ];
+
+                steps.make(data, '#steps', 2);
+            });
+        })
+    </script>
+
+</body>
+
+</html>
