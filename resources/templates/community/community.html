@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../static/layui/css/layui.css">
     <link rel="stylesheet" href="../../static/css/table.css">
-    <title>设备管理</title>
+    <title>社区管理</title>
     <style>
 
     </style>
@@ -35,31 +35,20 @@
 
         <form class="layui-form" action="" id="layer" style="display: none;">
             <div class="layui-form-item">
-                <label class="layui-form-label">设备号</label>
+                <label class="layui-form-label">社区名称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入设备号"
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入社区名称"
                         class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">分拣站</label>
+                <label class="layui-form-label">理货中心</label>
                 <div class="layui-input-block">
                     <select name="interest" lay-filter="center">
                         <option value=""></option>
                         <option value="0">理货中心A</option>
                         <option value="1">理货中心B</option>
                         <option value="2">理货中心C</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">服务小区</label>
-                <div class="layui-input-block">
-                    <select name="interest" lay-filter="center">
-                        <option value=""></option>
-                        <option value="0">小区A</option>
-                        <option value="1">小区B</option>
-                        <option value="2">小区C</option>
                     </select>
                 </div>
             </div>
@@ -134,17 +123,14 @@
                                         title: '物品编号',
                                         width: '0'
                                     }, {
-                                        field: 'equipmentNumber',
-                                        title: '设备号'
+                                        field: 'num',
+                                        title: '序号'
+                                    }, {
+                                        field: 'name',
+                                        title: '名称'
                                     }, {
                                         field: 'center',
-                                        title: '分拣站'
-                                    }, {
-                                        field: 'community',
-                                        title: '服务小区'
-                                    }, {
-                                        field: 'state',
-                                        title: '状态'
+                                        title: '理货中心'
                                     }, {
                                         field: 'right',
                                         title: '详情',

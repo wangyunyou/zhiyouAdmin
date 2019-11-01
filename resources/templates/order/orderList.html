@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../static/layui/css/layui.css">
     <link rel="stylesheet" href="../../static/css/table.css">
-    <title>商品类型</title>
+    <title>订单管理</title>
     <style>
         .selectBox {
             display: flex;
@@ -44,39 +44,9 @@
 
         <table id="demo" lay-filter="test"></table>
 
-        <script type="text/html" id="imgBox">
-            <img src="{{ d.img }}">
-        </script>
-
         <script type="text/html" id="barDemo">
-            <!-- <a class="layui-btn layui-btn-sm" lay-event="edit">详情</a> -->
-        <a class="layui-btn layui-btn-sm" href="orderDetail.html">详情</a>
+            <a class="layui-btn layui-btn-sm" href="orderDetail.html">详情</a>
         </script>
-
-        <form class="layui-form" action="" id="layer" style="display: none;">
-            <div class="layui-form-item">
-                <label class="layui-form-label">商品名称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商品名称"
-                        class="layui-input">
-                </div>
-            </div>
-
-            <div class="layui-form-item" style="margin-top: 50px;">
-                <label class="layui-form-label">上传图片</label>
-                <div class="layui-input-block">
-                    <div id="uploadImg">
-                        +
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-form-item" style="margin-top: 50px;">
-                <label class="layui-form-label"></label>
-                <div class="layui-input-block" style="color: #48B0FD;">(建议上传1:1比例图片，大小不超过300K，支持JPG/PNG)</div>
-            </div>
-
-        </form>
     </div>
     <script src="../../static/jquery-3.3.1.js"></script>
     <script src="../../static/layui/layui.js"></script>
@@ -92,32 +62,6 @@
                         upload = layui.upload,
                         form = layui.form,
                         laypage = layui.laypage
-
-                    //图片上传
-                    var uploadInst = upload.render({
-                        elem: '#uploadImg', //绑定元素
-                        url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json', //上传接口
-                        accept: "images",
-                        auto: false,
-                        bindAction: '#testListAction',
-                        choose: function (obj) {
-                            var files = obj.pushFile();
-                            //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
-                            obj.preview(function (index, file, result) {
-                                console.log(index); //得到文件索引
-                                console.log(file); //得到文件对象
-                                console.log(result); //得到文件base64编码，比如图片
-                                $('#uploadImg').html('<img src=' + result + ' >')
-                            });
-                        },
-                        done: function (res) {
-                            //上传完毕回调
-                            console.log(res)
-                        },
-                        error: function () {
-                            //请求异常回调
-                        }
-                    });
 
                     $('#add').click(function () {
                         layer.open({
