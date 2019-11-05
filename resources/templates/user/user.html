@@ -9,7 +9,17 @@
     <link rel="stylesheet" href="../../static/css/table.css">
     <title>用户管理</title>
     <style>
+        .layui-btn.layui-btn-warm.layui-btn-sm {
+            background: #FFB800
+        }
 
+        .layui-btn.layui-btn-warm.layui-btn-sm.my-disabled.active {
+            background: gray;
+        }
+
+        .layui-btn.layui-btn-warm.layui-btn-sm.my-disabled.state1 {
+            background: gray;
+        }
     </style>
 </head>
 
@@ -30,7 +40,12 @@
 
         <script type="text/html" id="barDemo">
             <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-warm layui-btn-sm my-disabled state{{ d.num }}" lay-event="disabled">禁用</a>
             <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+        </script>
+
+        <script type="text/html" id="imgBox">
+            {{ d.num }}
         </script>
 
         <form class="layui-form" action="" id="layer" style="display: none;">
@@ -187,7 +202,8 @@
                                         title: '工作场所'
                                     }, {
                                         field: 'state',
-                                        title: '状态'
+                                        title: '状态',
+                                        templet: '#imgBox'
                                     }, {
                                         field: 'right',
                                         title: '操作',
@@ -235,10 +251,15 @@
                                 area: ['900px', '700px'],
                                 title: '编辑信息',
                                 yes: function (index, layero) {
+                                    var Jsondata = addCheck("EDIT");
+                                    if (Jsondata == null) {
+                                        return;
+                                    }
+
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json',
-                                        data: jsonData,
+                                        url: '${base}/user/editWorker',
+                                        data: Jsondata,
                                         dataType: 'json',
                                         success: function (result) {
                                             if (result.success) {
@@ -248,12 +269,13 @@
                                                 setTimeout(function () {
                                                     layer
                                                         .closeAll();
-                                                }, 1000);
+                                                }, 2000);
                                                 location.reload();
                                             } else {
                                                 layer.msg(result.msg, {
                                                     icon: 2
                                                 });
+
                                             }
                                         }
                                     });
@@ -269,9 +291,15 @@
                                     //return false 开启该代码可禁止点击该按钮关闭
                                 },
                                 end: function () {
-                                    //                        location.reload();
+                                    //location.reload();
                                 }
                             });
+                        } else if (layEvent === 'disabled') {
+                            if (data.num === 1) {
+                                $(this).text('禁用').addClass('active', '#FFB800')
+                            } else {
+                                $(this).text('启用').css('background', 'gray')
+                            }
                         }
                     });
                 });
