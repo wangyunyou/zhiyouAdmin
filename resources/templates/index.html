@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="../static/layui/css/layui.css">
     <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="../static/css/global.css">
+    <style>
+        #logoImg {
+            width: 40px;
+            height: 40px;
+            margin: -8px 5px 0 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,7 +25,8 @@
             <div class="layui-main">
                 <div class="admin-login-box">
                     <a class="logo" style="left: 0;" href="/">
-                        <span style="font-size: 22px;">智友小站后台管理系统</span>
+                        <img src="../static/img/logo.png" id="logoImg" alt=""><span
+                            style="font-size: 22px;">智友小站后台管理系统</span>
                     </a>
                     <div class="admin-side-toggle">
                         =
@@ -83,7 +91,7 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;" lay-id="7">
                             <i aria-hidden="true" class="fa fa-gears"></i>
-                            <cite>货栈管理</cite>
+                            <cite>分拣站管理</cite>
                             <span class="layui-nav-more"></span>
                         </a>
                         <dl class="layui-nav-child">
@@ -112,15 +120,50 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;" lay-id="11" data-url="community/community.html">
+                        <a href="javascript:;" lay-id="11">
+                            <i aria-hidden="true" class="fa fa-retweet"></i>
+                            <cite>库存管理</cite>
+                            <span class="layui-nav-more"></span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-url="stock/putIn.html" lay-id="12">
+                                    <i aria-hidden="true" class="fa fa-sign-in"></i>
+                                    <cite>商品入库</cite>
+                                </a>
+                            </dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" data-url="stock/putOut.html" lay-id="13">
+                                    <i aria-hidden="true" class="fa fa-sign-out"></i>
+                                    <cite>商品出库</cite>
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" lay-id="14" data-url="community/community.html">
                             <i aria-hidden="true" class="fa fa-eye"></i>
                             <cite>社区管理</cite>
                         </a>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;" lay-id="12" data-url="equipment/equipment.html">
+                        <a href="javascript:;" lay-id="15" data-url="equipment/equipment.html">
                             <i aria-hidden="true" class="fa fa-file-pdf-o"></i>
                             <cite>设备管理</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" lay-id="16" data-url="priceReview/priceReview.html">
+                            <i aria-hidden="true" class="fa fa-print"></i>
+                            <cite>价格复核</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" lay-id="17" data-url="applyRecord/applyRecord.html">
+                            <i aria-hidden="true" class="fa fa-bars"></i>
+                            <cite>申请记录</cite>
                         </a>
                     </li>
                     <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>

@@ -37,14 +37,33 @@
             width: 180px;
             height: 180px;
         }
+
+        .selectBox {
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+
+        .select {
+            height: 25px;
+            width: 180px;
+        }
     </style>
 </head>
 
 <body>
     <div style="padding: 20px; background-color: #fff;height: 100%">
-
         <div class="title">
-            <div></div>
+            <div class="selectBox" style="padding:0 15px;">
+                <p style="margin-right:10px">
+                    分拣站:
+                </p>
+                <select name="" id="" class="select">
+                    <option value="">分拣站A</option>
+                    <option value="">分拣站B</option>
+                    <option value="">分拣站C</option>
+                </select>
+            </div>
             <div style="float: right;display: flex">
                 <input type="text" placeholder="请输入..." style="width: 200px;margin-right: 10px;text-indent: 3px">
                 <button class="layui-btn layui-btn-sm" style="padding:0 15px" id="">查询</button>
@@ -70,7 +89,7 @@
                     <input type="text" name="title" lay-verify="title" autocomplete="off" value="苹果"
                         style="background: #eee;" class="layui-input" disabled>
                 </div>
-                <div style="width: 50px;">
+                <div style="width: 100px;">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -79,7 +98,7 @@
                     <input type="text" name="title" lay-verify="title" autocomplete="off" value="500g"
                         style="background: #eee;" class="layui-input" disabled>
                 </div>
-                <div style="width: 50px;">
+                <div style="width: 100px;">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -88,8 +107,8 @@
                     <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商品原价"
                         class="layui-input">
                 </div>
-                <div style="width: 50px;">
-                    （元）
+                <div style="width: 100px;">
+                    &nbsp;&nbsp;元
                 </div>
             </div>
             <div class="layui-form-item">
@@ -98,8 +117,8 @@
                     <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商品促销价"
                         class="layui-input">
                 </div>
-                <div style="width: 50px;">
-                    （元）
+                <div style="width: 100px;">
+                    &nbsp;&nbsp;元（非必填）
                 </div>
             </div>
         </form>
@@ -191,6 +210,25 @@
                                     }, {
                                         field: 'newPrice',
                                         title: '促销价'
+                                    }, {
+                                        field: 'status',
+                                        title: '上架/下架',
+                                        align: 'center',
+                                        templet: function (d) {
+                                            var state = "";
+                                            if (d.status == "1") {
+                                                state =
+                                                    "<input type='checkbox' value='" +
+                                                    d.id +
+                                                    "' id='status' lay-filter='stat' checked='checked' name='status'  lay-skin='switch' lay-text='上架|下架' >";
+                                            } else {
+                                                state =
+                                                    "<input type='checkbox' value='" +
+                                                    d.id +
+                                                    "' id='status' lay-filter='stat'  name='status'  lay-skin='switch' lay-text='上架|下架' >";
+                                            }
+                                            return state;
+                                        }
                                     }, {
                                         field: 'right',
                                         title: '操作',

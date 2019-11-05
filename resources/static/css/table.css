@@ -64,3 +64,7 @@
     align-items: center;
     padding: 0 10px;
 }
+
+.layui-table-body.layui-table-main table {
+    width: 100%;
+}

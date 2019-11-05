@@ -326,7 +326,7 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .admin-side-toggle,.admin-side-full{
 	position: absolute; cursor: pointer;
     z-index: 19940201;
-    left: 240px;
+    left: 290px;
     color: white;
     text-align: center;
     width: 30px;
@@ -342,14 +342,11 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 	left: 240px;
 }
 .admin-login-box{
-	width: 230px; height: 70px; position: relative;
+	width: 290px; height: 70px; position: relative;display: flex;align-items: center;
 }
-
 .beg-navbar .layui-nav-child dd a{
 	padding-left: 30px;
 }
-
-
 .admin-contextmenu{
 	position: absolute;line-height: 36px;padding: 5px 0;
 	border: 1px solid #d2d2d2;background-color: white;z-index: 19940201;border-radius: 2px;white-space: nowrap;top:30px;
