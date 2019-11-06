@@ -9,15 +9,11 @@
     <link rel="stylesheet" href="../../static/css/table.css">
     <title>用户管理</title>
     <style>
-        .layui-btn.layui-btn-warm.layui-btn-sm {
-            background: #FFB800
+          .layui-btn.my-disabled.state0 {
+            background: #ffb800;
         }
 
-        .layui-btn.layui-btn-warm.layui-btn-sm.my-disabled.active {
-            background: gray;
-        }
-
-        .layui-btn.layui-btn-warm.layui-btn-sm.my-disabled.state1 {
+        .layui-btn.my-disabled.state2 {
             background: gray;
         }
     </style>
@@ -295,10 +291,12 @@
                                 }
                             });
                         } else if (layEvent === 'disabled') {
-                            if (data.num === 1) {
-                                $(this).text('禁用').addClass('active', '#FFB800')
-                            } else {
-                                $(this).text('启用').css('background', 'gray')
+                            if ($(this).hasClass('state0')) {
+                                $(this).removeClass('state0').addClass('state2').text('启用').parent()
+                                    .parent().prev().children().text('禁用')
+                            } else if ($(this).hasClass('state2')) {
+                                $(this).removeClass('state2').addClass('state0').text('禁用').parent()
+                                    .parent().prev().children().text('启用')
                             }
                         }
                     });
