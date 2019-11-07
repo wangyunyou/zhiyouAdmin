@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../static/css/table.css">
     <title>用户管理</title>
     <style>
-          .layui-btn.my-disabled.state0 {
+        .layui-btn.my-disabled.state0 {
             background: #ffb800;
         }
 
@@ -116,6 +116,14 @@
     <script src="../../static/jquery-3.3.1.js"></script>
     <script src="../../static/layui/layui.js"></script>
     <script>
+        function setRuleContent() {
+            var selectValue = $('#_select option:selected').text(); //选中select的内容
+            //alert("selectValue" + selectValue);
+
+            var inputValue = $("#_input").val(selectValue); //input获得select的内容并显示在输入框中
+            //alert(inputValue);
+        };
+
         $(function () {
             layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider',
                     'form'
