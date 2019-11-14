@@ -41,6 +41,27 @@
                         class="layui-input">
                 </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单位：g(克)
             </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择重量</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="weight" value="1" title="250g" lay-filter="weight">
+                    <input type="radio" name="weight" value="2" title="500g" lay-filter="weight">
+                    <input type="radio" name="weight" value="3" title="1000g" lay-filter="weight" checked>
+                    <input type="radio" name="weight" value="4" title="1500g" lay-filter="weight">
+                    <input type="radio" name="weight" value="0" title="自定义" lay-filter="weight">
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="inputWeight" style="display: none;">
+                <label class="layui-form-label">请输入商品重量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入不少于250的整数"
+                        class="layui-input">
+                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单位：g(克)
+            </div>
+
         </form>
     </div>
     <script src="../../static/jquery-3.3.1.js"></script>
@@ -65,6 +86,9 @@
                             btn: ['保存', '取消'],
                             area: ['900px', '700px'],
                             title: '添加信息',
+                            success: function () {
+
+                            },
                             yes: function (index, layero) {
 
                             },
@@ -83,6 +107,17 @@
                             }
                         });
                     })
+
+
+                    form.on('radio(weight)', function (data) {
+                        if (data.value == 0) {
+                            $('#inputWeight').show()
+                        } else {
+                            $('#inputWeight').hide()
+                        }
+                    });
+
+
                     //执行一个 table 实例
                     layui.use('table', function () {
                         var table = layui.table;
@@ -94,7 +129,9 @@
                             url: 'http://rest.apizza.net/mock/480fbdd9fc2eaff20db72dd45597fbc2/test-wyy.json' //数据接口
                                 ,
                             page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                                layout: ['count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                                layout: ['count', 'prev', 'page', 'next',
+                                        'skip'
+                                    ] //自定义分页布局
                                     ,
                                 groups: 5 //只显示 5 个连续页码
                                     ,
@@ -204,6 +241,7 @@
                             });
                         }
                     });
+
                 });
         })
     </script>
